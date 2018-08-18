@@ -13,12 +13,12 @@ This is an independent game project based off a Udemy tutorial and is only prese
 
 # Rules
 
-    The tank can move to anywhere in the terrain
-    The tank can fire it's missiles anywhere-direct hit to enemies will cause damage.
-    The tanks(both player and opponent) start with finite ammo.
+  * The tank can move to anywhere in the terrain
+  * The tank can fire it's missiles anywhere-direct hit to enemies will cause damage.
+  * The tanks(both player and opponent) start with finite ammo.
 
 # Requirements
 
-    Static Meshes- Tank with all its parts
-    Sound FX- Firing, explosion, damage, background music
-    Artwork- For UI screen
+  * Static Meshes- Tank with all its parts
+  * Sound FX- Firing, explosion, damage, background music
+  * Artwork- For UI screen
