@@ -3,10 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Tank.h"
 #include "AIController.h"
 #include "TankAIController.generated.h" // must be the last include
 
+class ATank;
 
 /**
  * 
@@ -20,13 +20,14 @@ public:
 
 	virtual void BeginPlay() override;
 
+	virtual void Tick(float DeltaTime) override;
+
 private:
 
 	ATank * GetControlledTank() const;
 
 	APawn* GetPlayerTank() const;
 
-	
 	
 	
 	
