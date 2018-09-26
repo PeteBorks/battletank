@@ -22,13 +22,10 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+
+
 private:
-
-	ATank * GetControlledTank() const;
-
-	APawn* GetPlayerTank() const;
-
 	
-	
-	
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float AcceptanceRadius = 100;
 };

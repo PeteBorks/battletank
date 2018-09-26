@@ -7,15 +7,25 @@
 #include "TankPlayerController.generated.h" // must be the last include
 
 class ATank;
+class UTankAimingComponent;
 
 /**
- * 
+ * Responsible for helping the player aim.
  */
 UCLASS()
 class BATTLETANK_API ATankPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-	
+
+protected:
+
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	ATank * GetControlledTank() const;
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
+	void FoundAimingComponent(UTankAimingComponent* AimingCompRef);
+
+
 public:
 
 	virtual void BeginPlay() override;
@@ -23,8 +33,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
-
-	ATank * GetControlledTank() const;
 
 	// Start moving barrel to crosshair pos
 	void AimTowardsCrosshair();
@@ -34,13 +42,13 @@ private:
 
 	int32 ViewportSizeX, ViewportSizeY;
 	
-	UPROPERTY(EditAnywhere, Category = CrosshairLocation)
+	UPROPERTY(EditDefaultsOnly, Category = "CrosshairLocation")
 	float CrosshairXLocation = 0.5f;
 	
-	UPROPERTY(EditAnywhere, Category = CrosshairLocation)
+	UPROPERTY(EditDefaultsOnly, Category = "CrosshairLocation")
 	float CrosshairYLocation = 0.3333f;
 
-	UPROPERTY(EditAnywhere, Category = LineTrace)
+	UPROPERTY(EditDefaultsOnly, Category = "LineTrace")
 	float LineTraceRange = 1000000;
 
 	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
