@@ -20,8 +20,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Firing")
 	float TrackMaxDrivingForce = 400000; // assume 40 ton tank and 1g accelleration
 
+protected:
+
+	virtual void BeginPlay() override;
 
 private:
+	UTankTrack();
 
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	void CorrectSlippery(float DeltaTime);
 };
