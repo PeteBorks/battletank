@@ -11,7 +11,7 @@ enum class EFiringState : uint8
 {
 	Reloading,
 	Aiming,
-	Locked
+	Locked,
 };
 
 
@@ -36,27 +36,35 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void Initialise(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
 
+	UFUNCTION(BlueprintCallable, Category = "Firing")
+	bool IsBarrelMoving();
+
 	UFUNCTION(BlueprintImplementableEvent, Category = "Firing")
 	void AIFire();
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Firing")
+	EFiringState FiringState; // = EFiringState::Locked;
+
 protected:
 
-	UPROPERTY(BlueprintReadOnly, Category = "State")
-	EFiringState FiringState = EFiringState::Locked;
 
 private:
 
 	// Sets default values for this component's properties
 	UTankAimingComponent();
 
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;
+
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	void MoveBarrelTowards(FVector AimDirection);
 
-		
 	
+
+	FVector OutLaunchVelocity;
 };
